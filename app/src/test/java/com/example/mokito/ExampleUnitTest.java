@@ -178,6 +178,15 @@ public class ExampleUnitTest {
     }
 
 
+    @Test(timeout = 100)/*(timeout = 10000)*/
+    public void timetest(){
+        int[] arr={2,0,8,95,8799,-1,5,3,1};
+
+        for(int i=0;i<10000000;i++){
+            Arrays.sort(arr);
+        }
+    }
+
 
 
     @After
