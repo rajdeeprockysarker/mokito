@@ -1,7 +1,15 @@
 package com.example.mokito;
 
 import android.app.UiAutomation;
+import android.content.SyncStatusObserver;
 
+import junit.extensions.TestSetup;
+
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,6 +24,7 @@ import org.mockito.junit.MockitoJUnitRunner;
 import org.mockito.junit.MockitoRule;
 import org.mockito.stubbing.Answer;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -49,6 +58,15 @@ public class ExampleUnitTest {
 
     @Spy
     ArrayList<String> mStringArrayList;
+
+    @BeforeClass
+    public static void setupBeforeClssCreatedForEachTest(){
+        System.out.println("Before Clss Created For Each Test");
+    }
+    @Before
+    public void setup(){
+        System.out.println("Befor Execute any test");
+    }
 
     @Test
     public void addition_isCorrect() {
@@ -141,5 +159,33 @@ public class ExampleUnitTest {
        // assertThat(capturedArgument, hasItem("someElement"));
     }
 
+    @Test
+    public void fail(){
+        Assert.fail("dfgfdgfdgdfdfg");
+    }
 
+    @Test(expected = NullPointerException.class)
+    public void nullpointerTest() {
+        int[] num=null;
+        Arrays.sort(num);
+    }
+
+
+    @Test
+    public void nullpointerTest1() {
+        int[] num={};
+        Arrays.sort(num);
+    }
+
+
+
+
+    @After
+     public void teardown(){
+        System.out.println("After Execute any test");
+    }
+    @AfterClass
+    public static void tearDownAfterClssCreatedForEachTest(){
+        System.out.println("After Clss Created For Each Test");
+    }
 }
